@@ -1,0 +1,42 @@
+#title{
+    text-align: center;
+    margin:0px auto;
+    color: #BE81F7;
+    font-weight: bold;
+    font-size: 6em;
+}
+
+#author{
+    text-align: center;
+    margin:0px auto;
+    color: #BE81F7;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+#stage {
+    color: #00FFFF;
+}
+
+body {
+    background: pink;
+}
+
+img {
+    width: 6.25em;
+    height: 6.25em;
+}
+
+.on_bulb {
+    background: #F5F6CE;
+}
+
+.off_bulb {
+    background: transparent;
+}
+
+.credit {
+    color: white;
+    text-align: center;
+    font-size: 1em;
+}
