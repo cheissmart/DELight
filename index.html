@@ -75,21 +75,25 @@
 
             press( float2int( node_list[i] / base ) , node_list[i] % base );
         }
-        
+    
         $("#stage").text("Stage " + (stage++) );
     }
 
+    var pop = $("#pop")[0] ;
     function once_click( r , c)
     {
-        press( r , c );
-        if(num_on_bulbs==0){
-            alert('You Win!  "Genius"');
-            random_question( question_size );
-        }
+       press( r , c );
+       pop.play();
+       if(num_on_bulbs==0){
+           alert('You Win!  "Genius"');
+           random_question( question_size );
+       }
     }
 
+
     $(document).ready(function(){
-           
+        pop = $("#pop")[0] ;
+
         for( var r = 0 ; r < r_size ; r++ )
         {
             var cur_row = "<tr>";
@@ -117,6 +121,10 @@
     });
 
     </script>
+    
+    <audio id="pop">
+        <source src="pop.wav" type="audio/wav">
+    </audio>
 
     <div id="title">DELight!</div>
     <div id="author">by prpr</div>
