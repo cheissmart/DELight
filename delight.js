@@ -30,6 +30,17 @@ for (var r = 0; r < r_size; ++r) {
         }
     }
 
+//preload images
+var images  = [
+    "images/Keep-calm-and-carry-on-scan.jpg",
+    "images/neutral-indeed-small.png"
+];
+var image_url;
+for( image_url in images ){
+    var img = new Image();
+    img.src = image_url;
+}
+
 
 function press( r , c  ){
         for(var i = r-1 ; i <= (r+1) ; i++ ){
@@ -75,12 +86,12 @@ function once_click( r , c)
    $("#pop")[0].play();
    if(num_on_bulbs==0){
        swal({
-			title: '<span style = " background-color: #FC0A20; color: #FFFFFF; margin:2px auto;  ">  <small><img src="images/neutral-indeed-small.png"> Well done, Tommy Atkins! &nbsp;&nbsp;&nbsp; </small> </span>',
-			text: '<img src="images/Keep-calm-and-carry-on-scan.jpg" height="288" width="192" >',
-			confirmButtonColor: '#FC0A20',
-			confirmButtonText: 'Yes, Milord!',
-			html: true
-	   });
+            title: '<span style = " background-color: #FC0A20; color: #FFFFFF; margin:2px auto;  ">  <small><img src="images/neutral-indeed-small.png"> Well done, Tommy Atkins! &nbsp;&nbsp;&nbsp; </small> </span>',
+            text: '<img src="images/Keep-calm-and-carry-on-scan.jpg" height="288" width="192" >',
+            confirmButtonColor: '#FC0A20',
+            confirmButtonText: 'Yes, Milord!',
+            html: true
+       });
        random_question( question_size );
    }
 }
