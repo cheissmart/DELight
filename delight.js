@@ -30,18 +30,6 @@ for (var r = 0; r < r_size; ++r) {
         }
     }
 
-//preload images
-var images  = [
-    "images/Keep-calm-and-carry-on-scan.jpg",
-    "images/neutral-indeed-small.png"
-];
-var image_url;
-for( image_url in images ){
-    var img = new Image();
-    img.src = image_url;
-}
-
-
 function press( r , c  ){
         for(var i = r-1 ; i <= (r+1) ; i++ ){
             if( i >= 0 && i < r_size){
@@ -98,6 +86,20 @@ function once_click( r , c)
 
 
 $(document).ready(function(){
+
+//preload images
+var images  = [
+    "images/Keep-calm-and-carry-on-scan.jpg",
+    "images/neutral-indeed-small.png"
+];
+var image_url;
+for( image_url in images ){
+    var img = new Image(0,0);
+    img.src = image_url;
+}
+
+
+
     for( var r = 0 ; r < r_size ; r++ )
     {
         var cur_row = "<tr>";
