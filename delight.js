@@ -29,8 +29,11 @@ for (var r = 0; r < r_size; ++r) {
             }
         }
     }
+function in_range(r, c) {
+    return r >= 0 && r < r_size && c >= 0 && c < c_size;
+}
 
-function press( r , c  ){
+function press(r, c){
         for(var i = r-1 ; i <= (r+1) ; i++ ){
             if( i >= 0 && i < r_size){
                 for(var j = c-1 ; j <= (c+1) ; j++ ){
@@ -105,7 +108,7 @@ for( image_url in images ){
         var cur_row = "<tr>";
         for( var c = 0 ; c < c_size ; c++ )
         {
-            cur_row += '<td>';
+            cur_row += '<td id="' + index[r][c][0] + '0' + '">';
 
             for( var on = 0 ; on < 2 ; on++ )
                 cur_row += bulb_start[on] + index[r][c][on] + '" onclick="once_click(' + r + ',' + c + ')"' + img_end ; 
@@ -119,6 +122,18 @@ for( image_url in images ){
         for( var c = 0 ; c < c_size ; c++ )
             $( "#" + index[r][c][1] ).toggle();
 
+    }
+
+    for (var r = 0; r < r_size; r++) {
+        for(var c = 0; c < c_size; c++){
+            for(var on = 0; on < 2; on++){
+                $('#' + index[r][c][on]).hover(function(){
+                    $(this).css("background-color", "purple");
+                },function(){
+                    $(this).css("background-color", "pink");
+                });
+            }
+        }
     }
 
     while( num_on_bulbs == 0 )
