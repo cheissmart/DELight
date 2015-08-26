@@ -136,7 +136,7 @@ function init(row_num, col_num, q_num) {
     }
 }
 
-function build_board(row_num, col_num) {
+function build_board(row_num, col_num, q_num) {
     init(row_num, col_num, q_num);
     $("#Board").empty();
     for (var r = 0; r < r_size; r++) {
@@ -176,7 +176,7 @@ for( image_url in images ){
 }
     
 
-    build_board(5, 5);
+    build_board(5, 5, 4);
     while(num_on_bulbs == 0)
         random_question(question_size);
 
