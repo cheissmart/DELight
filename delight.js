@@ -87,6 +87,18 @@ function once_click( r , c)
    }
 }
 
+function square_color_fill(r, c, color) {
+    for(var i = r - 1; i <= r + 1; i++) {
+        for (var j = c - 1; j <= c + 1; j++) {
+            if (in_range(i, j)) {
+                for(var on = 0; on < 2; on++) {
+                    $('#' + index[i][j][on]).css('background-color', color);
+                }
+            }
+        }
+    }
+}
+
 
 $(document).ready(function(){
 
@@ -108,10 +120,14 @@ for( image_url in images ){
         var cur_row = "<tr>";
         for( var c = 0 ; c < c_size ; c++ )
         {
-            cur_row += '<td id="' + index[r][c][0] + '0' + '">';
+            cur_row += '<td>';
 
             for( var on = 0 ; on < 2 ; on++ )
-                cur_row += bulb_start[on] + index[r][c][on] + '" onclick="once_click(' + r + ',' + c + ')"' + img_end ; 
+                cur_row += bulb_start[on] + index[r][c][on] + '" ' +
+                    'onclick    ="once_click('+r+','+c+')" ' +
+                    'onmouseover="square_color_fill('+r+','+c+','+"'#BCF5A9'"+')" ' +
+                    'onmouseout ="square_color_fill('+r+','+c+','+"'pink'" + ')" ' +
+                    img_end ; 
 
             cur_row += "</td>" ;
         }
@@ -122,18 +138,6 @@ for( image_url in images ){
         for( var c = 0 ; c < c_size ; c++ )
             $( "#" + index[r][c][1] ).toggle();
 
-    }
-
-    for (var r = 0; r < r_size; r++) {
-        for(var c = 0; c < c_size; c++){
-            for(var on = 0; on < 2; on++){
-                $('#' + index[r][c][on]).hover(function(){
-                    $(this).css("background-color", "purple");
-                },function(){
-                    $(this).css("background-color", "pink");
-                });
-            }
-        }
     }
 
     while( num_on_bulbs == 0 )
