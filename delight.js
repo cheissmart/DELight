@@ -8,6 +8,10 @@ var size;
 var num_on_bulbs;
 var pos_list; // list of pos to be shuffled by the question generator
 var base;
+var cur_timer; 
+var cur_s;
+var cur_m;
+var first_press;
 
 var bulb_start = new Array();
 bulb_start[0] = '<img src="images/off.png" class="bulb" class="off_bulb" id="';
@@ -60,27 +64,54 @@ function isDigit(value) {
     }
 }
 
+function timer() {
+    cur_s++;
+    if (cur_s == 60) {
+        cur_m++;
+        cur_s = 0;
+    }
+    $("#time").text(cur_m +':'+ ((cur_s<10)?'0':'') + cur_s);
+}
+
+function comment(m, s) {
+    s = m * 60 + s;
+    var ratio = question_size / 5;
+    s /= ratio;
+    if (s <= 3)
+        return 'Genius';
+    else if(s <= 6)
+        return 'Great';
+    else if(s <= 15)
+        return 'Medium';
+    else if(s <= 20)
+        return 'Bad';
+    else
+        return 'Practice Moar!';
+}
+
 function press(r, c){
-        for(var i = r-1 ; i <= (r+1) ; i++ ){
-            if( i >= 0 && i < r_size){
-                for(var j = c-1 ; j <= (c+1) ; j++ ){
-                    if( j >= 0 && j < c_size ){
-                        board[i][j] = !board[i][j];
-                        for(var on = 0; on < 2 ; on++ )
-                            $( "#" + index[i][j][on] ).toggle();
-                        if(board[i][j]){
-                            num_on_bulbs++;
-                        }
-                        else{
-                            num_on_bulbs--;
-                        }
+    for(var i = r-1 ; i <= (r+1) ; i++ ){
+        if( i >= 0 && i < r_size){
+            for(var j = c-1 ; j <= (c+1) ; j++ ){
+                if( j >= 0 && j < c_size ){
+                    board[i][j] = !board[i][j];
+                    for(var on = 0; on < 2 ; on++ )
+                        $( "#" + index[i][j][on] ).toggle();
+                    if(board[i][j]){
+                        num_on_bulbs++;
+                    }
+                    else{
+                        num_on_bulbs--;
                     }
                 }
             }
         }
     }
+}
 
 function random_question(q_size){
+    first_press = false;
+    $("#time").text('0:00');
     for (var i = 0; i < q_size; i++) {
         var rn = i + float2int( Math.random() * ( size - i ) ) ;
         var t = pos_list[i] ;
@@ -91,22 +122,31 @@ function random_question(q_size){
     }
 
     $("#stage").text("Stage " + (stage++) );
+    first_press = true;
 }
 
 function on_click( r , c)
 {
-   press( r , c );
-   $("#pop")[0].play();
-   if(num_on_bulbs==0){
+    if (first_press) {
+        first_press = false;
+        cur_s = 0;
+        cur_m = 0;
+        cur_timer = setInterval(function () {timer()}, 1000);
+    }
+    press(r, c);
+    $("#pop")[0].play();
+    if (num_on_bulbs == 0) {
+       clearInterval(cur_timer);
        swal({
             title: '<span style = " background-color: #FC0A20; color: #FFFFFF; margin:2px auto;  ">  <small><img src="images/neutral-indeed-small.png"> Well done, Tommy Atkins! &nbsp;&nbsp;&nbsp; </small> </span>',
-            text: '<img src="images/Keep-calm-and-carry-on-scan.jpg" height="288" width="192" >',
+            text: '<img src="images/Keep-calm-and-carry-on-scan.jpg" height="288" width="192" > <br>' +
+                  '<h3>Time Spent - ' + $('#time').text() + ', ' + comment(cur_m, cur_s) + '</h3>',
             confirmButtonColor: '#FC0A20',
             confirmButtonText: 'Yes, Milord!',
             html: true
        });
        random_question( question_size );
-   }
+    }
 }
 
 function square_color_fill(r, c, color) {

@@ -1,6 +1,7 @@
 body {
     text-align: center;
     margin:0px auto;
+    background: pink;
 }
 
 div#preimage1 {
@@ -37,13 +38,14 @@ div#preimage2 {
     color: #6E6E6E;
 }
 
-#stage {
+#status {
     font-size: 1.55em;
     color: #58ACFA;
 }
 
-body {
-    background: pink;
+#Board {
+    text-align: center;
+    margin:0px auto;
 }
 
 .bulb{
