@@ -1,3 +1,11 @@
+div#preimage1 {
+    background: url(images/Keep-calm-and-carry-on-scan.jpg) no-repeat -9999px -9999px;
+}
+
+div#preimage2 {
+    background: url(images/neutral-indeed-small.png) no-repeat -9999px -9999px;
+}
+
 #title{
     text-align: center;
     margin:0px auto;
