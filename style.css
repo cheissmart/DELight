@@ -22,8 +22,23 @@ div#preimage2 {
     font-size: 1.5em;
 }
 
+.option > * {
+    font-size: 1.5em;
+    color: #6E6E6E;
+}
+
+.option > button {
+    background: #A9F5BC;
+}
+
+.option > * * {
+    font-size: 1em;
+    color: #6E6E6E;
+}
+
 #stage {
-    color: #00FFFF;
+    font-size: 1.55em;
+    color: #58ACFA;
 }
 
 body {
