@@ -110,7 +110,7 @@ function press(r, c){
 }
 
 function random_question(q_size){
-    first_press = false;
+    clearInterval(cur_timer);
     $("#time").text('0:00');
     for (var i = 0; i < q_size; i++) {
         var rn = i + float2int( Math.random() * ( size - i ) ) ;
@@ -136,7 +136,6 @@ function on_click( r , c)
     press(r, c);
     $("#pop")[0].play();
     if (num_on_bulbs == 0) {
-       clearInterval(cur_timer);
        swal({
             title: '<span style = " background-color: #FC0A20; color: #FFFFFF; margin:2px auto;  ">  <small><img src="images/neutral-indeed-small.png"> Well done, Tommy Atkins! &nbsp;&nbsp;&nbsp; </small> </span>',
             text: '<img src="images/Keep-calm-and-carry-on-scan.jpg" height="288" width="192" > <br>' +
